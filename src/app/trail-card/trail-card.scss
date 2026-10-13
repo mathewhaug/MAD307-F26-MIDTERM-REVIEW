@@ -1,0 +1,85 @@
+// These styles are scoped to TrailCard. They cannot leak into other components.
+.card {
+  background: var(--color-surface);
+  border: 2px solid #d8d6cf;
+  border-radius: 8px;
+  padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-primary);
+    outline: none;
+  }
+
+  &.favourite {
+    border-color: var(--color-accent);
+  }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space);
+
+  h3 {
+    flex: 1;
+    margin: 0;
+    font-size: 1.1rem;
+  }
+}
+
+.position {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.star {
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.region,
+.numbers,
+.description {
+  margin: calc(var(--space) / 2) 0;
+}
+
+.region,
+.muted {
+  color: var(--color-muted);
+}
+
+.tags {
+  display: flex;
+  gap: var(--space);
+  flex-wrap: wrap;
+}
+
+.badge,
+.tag {
+  padding: 0 var(--space);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border: 1px solid currentColor;
+}
+
+.badge-easy {
+  color: #2e7d32;
+}
+
+.badge-moderate {
+  color: #b26a00;
+}
+
+.badge-hard {
+  color: #b3261e;
+}
+
+.tag {
+  color: var(--color-primary);
+}

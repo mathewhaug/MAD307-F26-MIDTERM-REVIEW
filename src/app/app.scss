@@ -1,0 +1,70 @@
+:host {
+  display: block;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+  padding: var(--space) calc(var(--space) * 2);
+  background: var(--color-primary);
+  color: #fff;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  button {
+    border: 1px solid #fff;
+    border-radius: 6px;
+    background: transparent;
+    color: #fff;
+    padding: calc(var(--space) / 2) var(--space);
+    cursor: pointer;
+  }
+}
+
+.app-main {
+  padding: calc(var(--space) * 2);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Single column on narrow screens.
+.layout {
+  display: grid;
+  gap: calc(var(--space) * 2);
+}
+
+.side {
+  display: grid;
+  gap: calc(var(--space) * 2);
+  align-content: start;
+}
+
+// Two columns on wide screens: list on the left, detail and stats on the right.
+@media (min-width: 800px) {
+  .layout {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .side {
+    position: sticky;
+    top: calc(var(--space) * 2);
+    align-self: start;
+  }
+}
+
+.packs {
+  display: grid;
+  gap: calc(var(--space) * 2);
+  margin-top: calc(var(--space) * 3);
+}
+
+@media (min-width: 800px) {
+  .packs {
+    grid-template-columns: 1fr 1fr;
+  }
+}

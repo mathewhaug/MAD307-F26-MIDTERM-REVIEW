@@ -1,0 +1,59 @@
+<section class="trail-list">
+  <div class="filters">
+    <label>
+      Search
+      <input
+        type="search"
+        placeholder="Name or region"
+        [value]="trailService.search()"
+        (input)="onSearch($event)"
+      />
+    </label>
+
+    <label>
+      Difficulty
+      <select (change)="onDifficulty($event)">
+        <option value="all" [selected]="trailService.difficultyFilter() === 'all'">All</option>
+        @for (difficulty of difficulties; track difficulty) {
+          <option [value]="difficulty" [selected]="trailService.difficultyFilter() === difficulty">
+            {{ difficulty }}
+          </option>
+        }
+      </select>
+    </label>
+
+    <label class="checkbox">
+      <input
+        type="checkbox"
+        [checked]="trailService.dogFriendlyOnly()"
+        (change)="onDogFriendly($event)"
+      />
+      Dog friendly only
+    </label>
+  </div>
+
+  <!-- track tells Angular how to identify each item, so it can reuse DOM
+       elements instead of rebuilding the whole list when the array changes. -->
+  @for (
+    trail of trailService.filteredTrails();
+    track trail.id;
+    let i = $index, even = $even, first = $first, last = $last, count = $count
+  ) {
+    <!-- $first: only the first iteration renders the count line.
+         $last: the last item drops its bottom margin (see .last in the SCSS). -->
+    @if (first) {
+      <p class="count">Showing {{ count }} trails</p>
+    }
+    <div class="item" [class.even]="even" [class.last]="last">
+      <app-trail-card
+        [trail]="trail"
+        [position]="i + 1"
+        [isFavourite]="trailService.isFavourite(trail.id)"
+        (selected)="trailService.select($event)"
+        (favouriteToggled)="trailService.toggleFavourite($event)"
+      />
+    </div>
+  } @empty {
+    <p>No trails match your filters.</p>
+  }
+</section>

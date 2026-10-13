@@ -1,0 +1,30 @@
+<section class="pack">
+  <h2>{{ label() }}</h2>
+
+  <div class="add">
+    <input
+      type="text"
+      placeholder="Add an item"
+      [attr.aria-label]="'Add an item to ' + label()"
+      [value]="draft()"
+      (input)="onDraft($event)"
+      (keydown.enter)="addItem()"
+    />
+    <button type="button" (click)="addItem()">Add</button>
+  </div>
+
+  <ul>
+    @for (item of store.items(); track item.id) {
+      <li>
+        <label [class.packed]="item.packed">
+          <input type="checkbox" [checked]="item.packed" (change)="store.toggle(item.id)" />
+          {{ item.name }}
+        </label>
+      </li>
+    } @empty {
+      <li class="muted">Nothing on the list yet.</li>
+    }
+  </ul>
+
+  <p class="muted">Packed {{ store.packedCount() }} of {{ store.items().length }}</p>
+</section>

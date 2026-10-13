@@ -1,0 +1,42 @@
+// Global styles. Component styles live next to each component and are scoped to it.
+
+// SCSS variables exist only at build time.
+$color-primary: #2f5d50; // forest green
+$color-accent: #c8872c; // trail marker amber
+$color-text: #222;
+$color-muted: #6b6b6b;
+$color-surface: #fff;
+$color-background: #f4f3ef;
+$space: 0.5rem;
+
+// Expose them as CSS custom properties so component stylesheets can use
+// var(--color-primary) without importing this file.
+:root {
+  --color-primary: #{$color-primary};
+  --color-accent: #{$color-accent};
+  --color-text: #{$color-text};
+  --color-muted: #{$color-muted};
+  --color-surface: #{$color-surface};
+  --color-background: #{$color-background};
+  --space: #{$space};
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  color: $color-text;
+  background: $color-background;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}

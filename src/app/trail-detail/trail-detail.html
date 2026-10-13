@@ -1,0 +1,35 @@
+<section class="detail">
+  <!-- "as t" stores the narrowed, non-undefined value in a local template variable. -->
+  @if (trail(); as t) {
+    <h2>{{ t.name }}</h2>
+    <p class="region">{{ t.region }}</p>
+    <dl>
+      <dt>Distance</dt>
+      <dd>{{ t.distanceKm }} km</dd>
+      <dt>Elevation gain</dt>
+      <dd>{{ t.elevationGainM }} m</dd>
+      <dt>Difficulty</dt>
+      <dd class="capitalize">{{ t.difficulty }}</dd>
+      <dt>Surface</dt>
+      <dd class="capitalize">{{ t.surface }}</dd>
+      <dt>Dogs</dt>
+      <dd>{{ t.dogFriendly ? 'Welcome' : 'Not allowed' }}</dd>
+    </dl>
+    @if (t.description) {
+      <p>{{ t.description }}</p>
+    }
+
+    <button type="button" class="log-button" (click)="hikeLog.logHike(t)">Mark as hiked</button>
+
+    <h3>Your hikes</h3>
+    <ul class="logs">
+      @for (log of logs(); track log.id) {
+        <li>{{ log.date }}, about {{ log.minutes }} min</li>
+      } @empty {
+        <li class="muted">Not hiked yet.</li>
+      }
+    </ul>
+  } @else {
+    <p>Select a trail to see details.</p>
+  }
+</section>

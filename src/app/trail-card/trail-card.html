@@ -1,0 +1,57 @@
+<article
+  class="card"
+  [class.favourite]="isFavourite()"
+  role="button"
+  tabindex="0"
+  (click)="selected.emit(trail())"
+  (keydown.enter)="selected.emit(trail())"
+>
+  <header class="card-header">
+    @if (position() !== undefined) {
+      <span class="position">#{{ position() }}</span>
+    }
+    <h3>{{ trail().name }}</h3>
+    <!-- Enter on the button would also bubble a keydown to the article, so stop it here. -->
+    <button
+      type="button"
+      class="star"
+      [attr.aria-label]="isFavourite() ? 'Remove from favourites' : 'Add to favourites'"
+      (click)="onFavourite($event)"
+      (keydown.enter)="$event.stopPropagation()"
+    >
+      {{ isFavourite() ? '★' : '☆' }}
+    </button>
+  </header>
+
+  <p class="region">{{ trail().region }}</p>
+  <p class="numbers">
+    {{ trail().distanceKm }} km · {{ trail().elevationGainM }} m gain · about
+    {{ estimatedHours().toFixed(1) }} h
+  </p>
+
+  <div class="tags">
+    @switch (trail().difficulty) {
+      @case ('easy') {
+        <span class="badge badge-easy">Easy</span>
+      }
+      @case ('moderate') {
+        <span class="badge badge-moderate">Moderate</span>
+      }
+      @case ('hard') {
+        <span class="badge badge-hard">Hard</span>
+      }
+      @default {
+        <span class="badge">Unknown</span>
+      }
+    }
+    @if (trail().dogFriendly) {
+      <span class="tag">Dog friendly</span>
+    }
+  </div>
+
+  @if (trail().description; as description) {
+    <p class="description">{{ description }}</p>
+  } @else {
+    <p class="description muted">No description yet</p>
+  }
+</article>

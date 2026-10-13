@@ -1,0 +1,35 @@
+<section class="stats">
+  <h2>Stats</h2>
+  <dl>
+    <dt>Trails shown</dt>
+    <dd>{{ trails().length }}</dd>
+    <dt>Total distance</dt>
+    <dd>{{ totalKm().toFixed(1) }} km</dd>
+    <dt>Average distance</dt>
+    <dd>{{ averageKm().toFixed(1) }} km</dd>
+    <dt>Favourites</dt>
+    <dd>{{ favouriteCount() }}</dd>
+    <dt>Hikes logged</dt>
+    <dd>{{ totalHikes() }}</dd>
+    <dt>Most hiked</dt>
+    <dd>
+      @if (mostHiked(); as top) {
+        {{ top.name }} ({{ top.timesHiked }})
+      } @else {
+        None yet
+      }
+    </dd>
+  </dl>
+
+  <h3>By difficulty</h3>
+  <ul class="difficulty-counts">
+    @for (difficulty of difficulties; track difficulty) {
+      <li>
+        <span class="capitalize">{{ difficulty }}</span>
+        <strong>{{ byDifficulty()[difficulty] }}</strong>
+      </li>
+    }
+  </ul>
+
+  <p class="clock">Updated {{ lastUpdated() | date: 'mediumTime' }}</p>
+</section>

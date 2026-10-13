@@ -1,0 +1,51 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space) calc(var(--space) * 2);
+  margin-bottom: calc(var(--space) * 2);
+
+  label {
+    display: grid;
+    gap: calc(var(--space) / 2);
+    font-size: 0.9rem;
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+  }
+
+  input[type='search'],
+  select {
+    padding: calc(var(--space) / 2) var(--space);
+    border: 1px solid #c9c7bf;
+    border-radius: 6px;
+    background: var(--color-surface);
+  }
+
+  select {
+    text-transform: capitalize;
+  }
+}
+
+.count {
+  margin: 0 0 var(--space);
+  color: var(--color-muted);
+}
+
+.item {
+  padding: var(--space);
+  margin-bottom: var(--space);
+  border-radius: 10px;
+
+  // Zebra striping driven by $even.
+  &.even {
+    background: rgba(47, 93, 80, 0.06);
+  }
+
+  // Driven by $last.
+  &.last {
+    margin-bottom: 0;
+  }
+}
